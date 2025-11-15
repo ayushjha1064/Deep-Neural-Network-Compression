@@ -26,11 +26,17 @@ You will need the following Python libraries:
 * `numpy`
 * `scikit-learn` (for KMeans)
 
+### Execution
 You can install them using pip:
 
+Save the code as `deep_nn_compression.py` and run it from your terminal:
+##### pip install torch torchvision numpy scikit-learn
+##### python deep_nn_compression.py
+
+## Results
 ```sh
-pip install torch torchvision numpy scikit-learn
-python deep_nn_compression.py
+
+
 
 Loading pre-trained AlexNet...
 
