@@ -2,48 +2,35 @@
 
 This project implements the three-stage deep neural network compression pipeline (Pruning, Quantization, and Huffman Coding) as described in the paper "Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding" by Han et al.
 
-The target model for compression is a pre-trained AlexNet model.
+The target model for compression is a pre-trained **AlexNet** model.
 
-The 3-Stage Pipeline
+## The 3-Stage Pipeline
 
-Stage 1: Pruning
-Weights with a low L1 magnitude (below a certain percentile threshold) are considered unimportant and are removed from the network, setting them to zero. This creates a sparse model.
+1.  **Stage 1: Pruning**
+    Weights with a low L1 magnitude (below a certain percentile threshold) are considered unimportant and are removed from the network, setting them to zero. This creates a sparse model.
 
-Stage 2: Trained Quantization
-The remaining non-zero weights are clustered using K-Means. All weights belonging to a cluster are replaced by the cluster's centroid value. This reduces the number of unique weight values. We store the small (e.g., 5-bit) cluster indices and a codebook of the (e.g., 32) centroid values.
+2.  **Stage 2: Trained Quantization**
+    The remaining non-zero weights are clustered using K-Means. All weights belonging to a cluster are replaced by the cluster's centroid value. This reduces the number of unique weight values. We store the small (e.g., 5-bit) cluster indices and a codebook of the (e.g., 32) centroid values.
 
-Stage 3: Huffman Coding
-The quantized cluster indices are further compressed using Huffman coding, a lossless compression algorithm that assigns shorter codes to more frequent indices.
+3.  **Stage 3: Huffman Coding**
+    The quantized cluster indices are further compressed using Huffman coding, a lossless compression algorithm that assigns shorter codes to more frequent indices.
 
-How to Run
+## How to Run
 
-Dependencies
+### Dependencies
 
 You will need the following Python libraries:
 
-torch
-
-torchvision
-
-numpy
-
-scikit-learn (for KMeans)
+* `torch`
+* `torchvision`
+* `numpy`
+* `scikit-learn` (for KMeans)
 
 You can install them using pip:
 
+```sh
 pip install torch torchvision numpy scikit-learn
-
-
-Execution
-
-Save the code as deep_nn_compression.py and run it from your terminal:
-
 python deep_nn_compression.py
-
-
-Results
-
-Here is the sample output from running the script. The original 228.18 MB model was compressed to 25.36 MB, achieving a 9.00x compression ratio.
 
 Loading pre-trained AlexNet...
 
